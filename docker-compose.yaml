@@ -1,0 +1,16 @@
+services:
+  api:
+    build: .
+    ports:
+      - "5001:5000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - PORT=5000
+    depends_on:
+      - redis
+    restart: on-failure
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
